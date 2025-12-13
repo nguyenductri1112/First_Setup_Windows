@@ -1,5 +1,3 @@
-
-
 # install scoop
 
 start powershell -wait -argumentlist @"
@@ -22,46 +20,47 @@ exit
 start powershell -wait -argumentList @" 
 winget install UniKey.UniKey
 winget install Fastfetch-cli.Fastfetch
-
 <#
 winget install Microsoft.DotNet.Runtime.10
 winget install Microsoft.DotNet.AspNetCore.10
 winget install Microsoft.DotNet.DesktopRuntime.10
+#>
 winget install Microsoft.DotNet.SDK.10
-
+<#
 winget install Microsoft.VCRedist.2005.x64
 winget install Microsoft.VCRedist.2008.x64
 winget install Microsoft.VCRedist.2010.x64
 winget install Microsoft.VCRedist.2012.x64
 winget install Microsoft.VCRedist.2013.x64
+#>
 winget install Microsoft.VCRedist.2015+.x64
-
+<#
 winget install Microsoft.VCRedist.2005.x86
 winget install Microsoft.VCRedist.2008.x86
 winget install Microsoft.VCRedist.2010.x86
 winget install Microsoft.VCRedist.2012.x86
 winget install Microsoft.VCRedist.2013.x86
-winget install Microsoft.VCRedist.2015+.x86
 #>
-scoop install git
-scoop install extras
-scoop install extras/telegram
+winget install Microsoft.VCRedist.2015+.x86
 
+scoop install git
+scoop bucket add extras
+scoop bucket add main
+scoop install extras/telegram
+scoop install extras/floorp
+scoop install extras/revouninstaller
+scoop install extras/freedownloadmanager
+scoop install main/fzf
 "@
 
 start powershell -verb runas -wait -argumentlist @"
-choco install floorp -y
-choco install fzf -y
-choco install revo-uninstaller -y
 choco install zalopc -y
-choco install freedownloadmanager -y
 "@
-
 
 function create{
     param(
         [string]$text1, #Path Folder
-	[string]$text2, #Link Download
+	    [string]$text2, #Link Download
         [string]$text3  #File Name
     )
     mkdir $text1
@@ -69,11 +68,11 @@ function create{
 }
 
 create -text1 "C:\Elephant" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "elephant.fda"
-
 create -text1 "C:\Office" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "config.xml"
 iwr "" -outfile "C:\Office\setup.exe"
 $configPath = "C:\Office\config.xml"
 $configRun = "C:\Office\setup.exe"
 Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
 
 
