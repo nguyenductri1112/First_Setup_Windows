@@ -23,7 +23,7 @@ start powershell -wait -argumentList @"
 winget install UniKey.UniKey
 winget install Fastfetch-cli.Fastfetch
 
-
+<#
 winget install Microsoft.DotNet.Runtime.10
 winget install Microsoft.DotNet.AspNetCore.10
 winget install Microsoft.DotNet.DesktopRuntime.10
@@ -42,7 +42,7 @@ winget install Microsoft.VCRedist.2010.x86
 winget install Microsoft.VCRedist.2012.x86
 winget install Microsoft.VCRedist.2013.x86
 winget install Microsoft.VCRedist.2015+.x86
-
+#>
 scoop install git
 scoop install extras
 scoop install extras/telegram
@@ -75,4 +75,5 @@ iwr "" -outfile "C:\Office\setup.exe"
 $configPath = "C:\Office\config.xml"
 $configRun = "C:\Office\setup.exe"
 Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
 
