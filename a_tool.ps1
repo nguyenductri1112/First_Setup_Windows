@@ -68,11 +68,12 @@ function create{
 }
 
 create -text1 "C:\Elephant" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "elephant.fda"
-create -text1 "C:\Office" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "config.xml"
-iwr "" -outfile "C:\Office\setup.exe"
+create -text1 "C:\Office" -text2 "https://github.com/nguyenductri1112/storage/releases/download/config/Configuration.xml" -text3 "config.xml"
+iwr "https://github.com/nguyenductri1112/storage/releases/download/config/setup.exe" -outfile "C:\Office\setup.exe"
 $configPath = "C:\Office\config.xml"
 $configRun = "C:\Office\setup.exe"
 Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
 
 
 
