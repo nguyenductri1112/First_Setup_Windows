@@ -72,6 +72,7 @@ create -text1 "C:\Elephant" -text2 "https://free-addons.org/FDM/elephant.fda" -t
 
 create -text1 "C:\Office" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "config.xml"
 iwr "" -outfile "C:\Office\setup.exe"
-#$configPath = "C:\Office\config.xml"
-#$configRun = "C:\Office\setup.exe"
-#Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+$configPath = "C:\Office\config.xml"
+$configRun = "C:\Office\setup.exe"
+Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
