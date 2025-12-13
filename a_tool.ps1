@@ -1,23 +1,14 @@
 # install scoop
-
+<#
 start powershell -wait -argumentlist @"
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 exit
 "@
-
-#install chocolatey
-
-start powershell -verb runas -wait -argumentlist @"
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-exit
-"@
-
+#>
 #install app 
 
-start powershell -wait -argumentList @" 
+start powershell -verb runas -wait -argumentList @" 
 winget install UniKey.UniKey
 winget install Fastfetch-cli.Fastfetch
 <#
@@ -42,21 +33,20 @@ winget install Microsoft.VCRedist.2012.x86
 winget install Microsoft.VCRedist.2013.x86
 #>
 winget install Microsoft.VCRedist.2015+.x86
-
+"@
+start powershell -wait -argumentlist @"
 scoop install git
 scoop bucket add extras
 scoop bucket add main
-scoop install extras/telegram
+ scoop bucket add versions
 scoop install extras/floorp
+scoop install versions/brave-beta
 scoop install extras/revouninstaller
 scoop install extras/freedownloadmanager
 scoop install main/fzf
 "@
 
-start powershell -verb runas -wait -argumentlist @"
-choco install zalopc -y
-"@
-
+ 
 function create{
     param(
         [string]$text1, #Path Folder
@@ -64,7 +54,7 @@ function create{
         [string]$text3  #File Name
     )
     mkdir $text1
-    iwr $text2 -outfile "$text1/$text3"
+    iwr $text2 -outfile "$text1\$text3"
 }
 
 create -text1 "C:\Elephant" -text2 "https://free-addons.org/FDM/elephant.fda" -text3 "elephant.fda"
@@ -73,6 +63,7 @@ iwr "https://github.com/nguyenductri1112/storage/releases/download/config/setup.
 $configPath = "C:\Office\config.xml"
 $configRun = "C:\Office\setup.exe"
 Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
 
 
 
