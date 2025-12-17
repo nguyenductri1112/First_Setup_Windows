@@ -38,9 +38,7 @@ start powershell -wait -argumentlist @"
 scoop install git
 scoop bucket add extras
 scoop bucket add main
- scoop bucket add versions
-scoop install extras/floorp
-scoop install versions/brave-beta
+scoop bucket add versions
 scoop install extras/revouninstaller
 scoop install extras/freedownloadmanager
 scoop install main/fzf
@@ -63,6 +61,7 @@ iwr "https://github.com/nguyenductri1112/storage/releases/download/config/setup.
 $configPath = "C:\Office\config.xml"
 $configRun = "C:\Office\setup.exe"
 Start "$configRun" -ArgumentList "/configure $configPath" -verb runas -Wait
+
 
 
 
